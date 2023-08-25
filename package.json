@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.4.3",
+    "node-telegram-bot-api": "^0.61.0",
+    "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node-telegram-bot-api": "^0.61.7"
+  },
+  "name": "ads-tele",
+  "version": "1.0.0",
+  "description": "no desc",
+  "main": "index.ts",
+  "scripts": {
+    "test": "ts-node index.ts",
+    "start": "ts-node index.ts"
+  },
+  "keywords": [
+    "bot",
+    "telegram"
+  ],
+  "author": "bintang",
+  "license": "ISC"
+}

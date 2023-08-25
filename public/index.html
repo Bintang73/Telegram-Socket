@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Telegram Bot Chat</title>
+</head>
+<body>
+  <form id="form" action="">
+    <input id="idtele" autocomplete="off"  placeholder="Id Telegramnya"/>
+    <input id="input" autocomplete="off" placeholder="Pesannya"/>
+    <button>Send</button>
+  </form>
+  <ul id="messages"></ul>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    const socket = io();
+
+    $('#form').submit((e) => {
+      e.preventDefault();
+      const message = $('#input').val();
+      const idtele = $('#idtele').val();
+      if (message && idtele) {
+        socket.emit('chat message', { message, idtele });
+        $('#input').val('');
+        $('#messages').append($('<li>').text(`You sent to [${idtele}]: ${message}`));
+      } else {
+        alert("Message dan idtele tidak boleh kosong")
+      }
+      return false;
+    });
+
+    socket.on('bot message', ({ message, chatId }) => {
+      $('#messages').append($('<li>').text(`[${chatId}]: ${message}`));
+    });
+
+    socket.on('error message', (errorMessage) => {
+        $('#messages').append($('<li>').text(`Error: ${errorMessage}`));
+    });
+  </script>
+</body>
+</html>
